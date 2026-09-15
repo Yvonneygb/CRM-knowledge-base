@@ -127,7 +127,7 @@
 </div>
 </div>
 
-<div id="biz-flow" style="display:none;" v-pre>
+<div id="biz-flow" style="display:none;">
 <div class="tab-pad">
   <div class="bf-truth-flow">
     <div class="bf-main-title">创建常规订单业务流程</div>

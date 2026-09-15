@@ -1,7 +1,7 @@
 {
   "name": "crm-knowledge-base",
   "version": "1.0.0",
-  "description": "CRM 系统业务逻辑知识库",
+  "type": "module",
   "scripts": {
     "dev": "vitepress dev docs",
     "build": "vitepress build docs",

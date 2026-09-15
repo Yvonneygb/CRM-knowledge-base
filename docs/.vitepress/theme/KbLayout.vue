@@ -244,7 +244,9 @@ const secondaryNav = {
       ]
     }
   ]
-} = computed(() => {
+}
+
+const currentPath = computed(() => {
   // 确保路径以 / 开头，用于匹配
   const path = router.route.path
   return path.endsWith('/') ? path : path + '/'

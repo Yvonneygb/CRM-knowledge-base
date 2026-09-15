@@ -8,7 +8,7 @@
             <path d="M2 20h20M3 10l9-7 9 7M5 10v10h4v-6h6v6h4V10" />
           </svg>
         </div>
-        <span class="kb-logo-title">新门户系统知识库</span>
+        <span class="kb-logo-title">CRM 知识库</span>
       </div>
       <div class="kb-topbar-right">
         <a :href="withBase('/源MD管理/')" class="kb-md-entry" title="上传 AI 生成的最新 MD，自动更新知识库">
@@ -231,406 +231,20 @@ import FloatingQA from './FloatingQA.vue'
 const router = useRouter()
 
 const primaryNav = [
-  { id: '家装管理', label: '家装管理', icon: 'fa-solid fa-building' },
-  { id: '工程管理', label: '工程管理', icon: 'fa-solid fa-helmet-safety' },
-  { id: '门店管理', label: '门店管理', icon: 'fa-solid fa-store' },
-  { id: '财务管理', label: '财务管理', icon: 'fa-solid fa-coins' },
-  { id: '经销合同管理', label: '经销合同管理', icon: 'fa-solid fa-file-contract' },
-  { id: '点将管理', label: '点将管理', icon: 'fa-solid fa-bullseye' },
-  { id: '产品中心', label: '产品中心', icon: 'fa-solid fa-box' },
-  { id: '电子合同管理', label: '电子合同管理', icon: 'fa-solid fa-file-signature' },
-  { id: '问题反馈', label: '问题反馈', icon: 'fa-solid fa-comments' },
-  { id: '开发管理', label: '开发管理', icon: 'fa-solid fa-code' },
+  { id: '订单管理', label: '订单管理', icon: 'fa-solid fa-cart-shopping' },
 ]
 
 const secondaryNav = {
-  '家装管理': [
+  '订单管理': [
     {
-      label: '项目往来',
-      icon: 'fa-solid fa-arrow-right-arrow-left',
-      items: [
-        { label: '家装真实性核销', link: '/家装管理/项目往来/家装真实性核销/', icon: 'fa-solid fa-shield-halved' },
-      ]
-    },
-    {
-      label: '家装往来',
-      icon: 'fa-solid fa-receipt',
-      items: [
-        { label: '家装核销发票上传', link: '/家装管理/家装往来/家装核销发票上传/', icon: 'fa-solid fa-file-invoice' },
-        { label: '家装要货订单', link: '/家装管理/家装往来/家装要货订单/', icon: 'fa-solid fa-cart-shopping' },
-      ]
-    },
-    {
-      label: '项目交付',
-      icon: 'fa-solid fa-truck-fast',
-      items: [
-        { label: '家装折扣政策申请', link: '/家装管理/项目交付/家装折扣政策申请/', icon: 'fa-solid fa-percent' },
-      ]
-    }
-  ],
-  '工程管理': [
-    {
-      label: '项目合同',
-      icon: 'fa-solid fa-file-contract',
-      items: [
-        { label: '自营工程合同', link: '/工程管理/项目合同/自营工程合同/', icon: 'fa-solid fa-file-signature' },
-        { label: '经销商工程合同', link: '/工程管理/项目合同/经销商工程合同/', icon: 'fa-solid fa-handshake' },
-      ]
-    },
-    {
-      label: '合同与折扣',
-      icon: 'fa-solid fa-file-invoice-dollar',
-      items: [
-        { label: '工程折扣单', link: '/工程管理/合同与折扣/工程折扣单/', icon: 'fa-solid fa-tags' },
-        { label: '项目合同失效', link: '/工程管理/合同与折扣/项目合同失效/', icon: 'fa-solid fa-file-circle-xmark' },
-        { label: '工程自营签收', link: '/工程管理/合同与折扣/工程自营签收/', icon: 'fa-solid fa-clipboard-check' },
-      ]
-    },
-    {
-      label: '服务费',
-      icon: 'fa-solid fa-money-bill-transfer',
-      items: [
-        { label: '服务费业务背景', link: '/工程管理/服务费/服务费业务背景/', icon: 'fa-solid fa-diagram-project' },
-        { label: '工程服务费报销', link: '/工程管理/服务费/工程服务费报销/', icon: 'fa-solid fa-receipt' },
-        { label: '工程服务费兑现', link: '/工程管理/服务费/工程服务费兑现/', icon: 'fa-solid fa-hand-holding-dollar' },
-      ]
-    },
-    {
-      label: '项目交付',
-      icon: 'fa-solid fa-truck-fast',
-      items: [
-        { label: '工程要货订单', link: '/工程管理/项目交付/工程要货订单/', icon: 'fa-solid fa-box-urgent' },
-        { label: '工程折扣政策申请', link: '/工程管理/项目交付/工程折扣政策申请/', icon: 'fa-solid fa-percent' },
-        { label: '工程折扣政策失效', link: '/工程管理/项目交付/工程折扣政策失效/', icon: 'fa-solid fa-ban' },
-        { label: '折扣单报表', link: '/工程管理/项目交付/折扣单报表/', icon: 'fa-solid fa-table' },
-        { label: '工程合同产品变更', link: '/工程管理/项目交付/工程合同产品变更/', icon: 'fa-solid fa-retweet' },
-        { label: '工程取消核销与发票作废', link: '/工程管理/项目交付/工程取消核销与发票作废/', icon: 'fa-solid fa-file-xmark' },
-        { label: '工程折扣延期', link: '/工程管理/项目交付/工程折扣延期/', icon: 'fa-solid fa-clock' },
-        { label: '紧急要货插单', link: '/工程管理/项目交付/紧急要货插单/', icon: 'fa-solid fa-bolt' },
-        { label: '提货时间变更', link: '/工程管理/项目交付/提货时间变更/', icon: 'fa-solid fa-calendar-check' },
-        { label: '订单紧急要货', link: '/工程管理/项目交付/订单紧急要货/', icon: 'fa-solid fa-truck-bolt' },
-        { label: '折扣政策明细查询（内部）', link: '/工程管理/项目交付/折扣政策明细查询（内部）/', icon: 'fa-solid fa-search' },
-        { label: '有效延期申请', link: '/工程管理/项目交付/有效延期申请/', icon: 'fa-solid fa-clock-rotate-left' },
-        { label: '紧急要货报表', link: '/工程管理/项目交付/紧急要货报表/', icon: 'fa-solid fa-chart-line' },
-        { label: '工程要货订单报表', link: '/工程管理/项目交付/工程要货订单报表/', icon: 'fa-solid fa-table-list' },
-      ]
-    },
-    {
-      label: '项目商机',
-      icon: 'fa-solid fa-bullseye',
-      items: [
-        { label: '报备生失效申请', link: '/工程管理/项目商机/报备生失效申请/', icon: 'fa-solid fa-file-xmark' },
-        { label: '报备解冻申请', link: '/工程管理/项目商机/报备解冻申请/', icon: 'fa-solid fa-snowflake' },
-        { label: '工程项目结案', link: '/工程管理/项目商机/工程项目结案/', icon: 'fa-solid fa-circle-check' },
-        { label: '单体项目报备', link: '/工程管理/项目商机/单体项目报备/', icon: 'fa-solid fa-box' },
-        { label: '工程项目档案', link: '/工程管理/项目商机/工程项目档案/', icon: 'fa-solid fa-archive' },
-        { label: '战略经理变更', link: '/工程管理/项目商机/战略经理变更/', icon: 'fa-solid fa-user-tie' },
-        { label: '价格保护函', link: '/工程管理/项目商机/价格保护函/', icon: 'fa-solid fa-shield-halved' },
-        { label: '项目进度更新', link: '/工程管理/项目商机/项目进度更新/', icon: 'fa-solid fa-chart-line' },
-        { label: '战略报备变更', link: '/工程管理/项目商机/战略报备变更/', icon: 'fa-solid fa-pen-to-square' },
-        { label: '战略项目报备', link: '/工程管理/项目商机/战略项目报备/', icon: 'fa-solid fa-chess-rook' },
-      ]
-    },
-    {
-      label: '项目往来',
-      icon: 'fa-solid fa-arrow-right-arrow-left',
-      items: [
-        { label: '工程服务费预提', link: '/工程管理/项目往来/工程服务费预提/', icon: 'fa-solid fa-file-invoice-dollar' },
-        { label: '项目到款引入', link: '/工程管理/项目往来/项目到款引入/', icon: 'fa-solid fa-arrow-down-to-line' },
-        { label: '项目到款认领', link: '/工程管理/项目往来/项目到款认领/', icon: 'fa-solid fa-hand-pointer' },
-        { label: '项目到款认领撤销', link: '/工程管理/项目往来/项目到款认领撤销/', icon: 'fa-solid fa-rotate-left' },
-        { label: '工程折扣政策', link: '/工程管理/项目往来/工程折扣政策/', icon: 'fa-solid fa-gavel' },
-        { label: '工程核销发票上传', link: '/工程管理/项目往来/工程核销发票上传/', icon: 'fa-solid fa-file-invoice' },
-        { label: '工程真实性核销', link: '/工程管理/项目往来/工程真实性核销/', icon: 'fa-solid fa-shield-halved' },
-      ]
-    }
-  ],
-  '门店管理': [
-    {
-      label: '门店设置',
-      icon: 'fa-solid fa-store-alt',
-      items: [
-        { label: '门头展板报销标准', link: '/门店管理/门店设置/门头展板报销标准/', icon: 'fa-solid fa-sign' },
-        { label: '经销商额度外限额', link: '/门店管理/门店设置/经销商额度外限额/', icon: 'fa-solid fa-chart-bar' },
-        { label: '门店照片设置', link: '/门店管理/门店设置/门店照片设置/', icon: 'fa-solid fa-camera' },
-        { label: '门店装修标准', link: '/门店管理/门店设置/门店装修标准/', icon: 'fa-solid fa-paint-roller' },
-        { label: '门头验收信息设置', link: '/门店管理/门店设置/门头验收信息设置/', icon: 'fa-solid fa-clipboard-check' },
-      ]
-    },
-    {
-      label: '门店档案',
-      icon: 'fa-solid fa-folder-open',
-      items: [
-        { label: '门店变更申请', link: '/门店管理/门店档案/门店变更申请/', icon: 'fa-solid fa-rotate' },
-        { label: '门店档案', link: '/门店管理/门店档案/门店档案/', icon: 'fa-solid fa-folder' },
-        { label: '新建门店申请', link: '/门店管理/门店档案/新建门店申请/', icon: 'fa-solid fa-plus-circle' },
-      ]
-    },
-    {
-      label: '门店装修',
-      icon: 'fa-solid fa-tools',
-      items: [
-        { label: '门头展板兑现', link: '/门店管理/门店装修/门头展板兑现/', icon: 'fa-solid fa-dollar-sign' },
-        { label: '额度内兑现批量复核', link: '/门店管理/门店装修/额度内兑现批量复核/', icon: 'fa-solid fa-check-double' },
-        { label: '门店验收与报销单', link: '/门店管理/门店装修/门店验收与报销单/', icon: 'fa-solid fa-clipboard-list' },
-        { label: '门店装修额度内兑现', link: '/门店管理/门店装修/门店装修额度内兑现/', icon: 'fa-solid fa-coins' },
-        { label: '门店装修额度外兑现', link: '/门店管理/门店装修/门店装修额度外兑现/', icon: 'fa-solid fa-credit-card' },
-        { label: '门店装修申请变更', link: '/门店管理/门店装修/门店装修申请变更/', icon: 'fa-solid fa-pen-to-square' },
-        { label: '门店装修申请关闭', link: '/门店管理/门店装修/门店装修申请关闭/', icon: 'fa-solid fa-ban' },
-        { label: '门店装修申请与进度更新', link: '/门店管理/门店装修/门店装修申请与进度更新/', icon: 'fa-solid fa-file-pen' },
-        { label: '门头展板报销申请单', link: '/门店管理/门店装修/门头展板报销申请单/', icon: 'fa-solid fa-file-invoice' },
-      ]
-    },
-    {
-      label: '样品及长库龄管理',
-      icon: 'fa-solid fa-flask',
-      items: [
-        { label: '样品及长库龄要货订单', link: '/门店管理/样品及长库龄管理/样品及长库龄要货订单/', icon: 'fa-solid fa-flask' },
-        { label: '样品及长库龄折扣政策', link: '/门店管理/样品及长库龄管理/样品及长库龄折扣政策/', icon: 'fa-solid fa-tags' },
-        { label: '样品及长库龄折扣政策失效', link: '/门店管理/样品及长库龄管理/样品及长库龄折扣政策失效/', icon: 'fa-solid fa-ban' },
-      ]
-    },
-    {
-      label: '门店报表',
-      icon: 'fa-solid fa-table',
-      items: [
-        { label: '门店统计分析', link: '/门店管理/门店报表/门店统计分析/', icon: 'fa-solid fa-chart-bar' },
-        { label: '出库单计算广告费明细报表', link: '/门店管理/门店报表/出库单计算广告费明细报表/', icon: 'fa-solid fa-file-invoice' },
-        { label: '店面额度内兑现余额表', link: '/门店管理/门店报表/店面额度内兑现余额表/', icon: 'fa-solid fa-coins' },
-        { label: '额度外占用预算明细', link: '/门店管理/门店报表/额度外占用预算明细/', icon: 'fa-solid fa-file-lines' },
-        { label: '户外广告分布', link: '/门店管理/门店报表/户外广告分布/', icon: 'fa-solid fa-map' },
-        { label: '门店区域分布', link: '/门店管理/门店报表/门店区域分布/', icon: 'fa-solid fa-location-dot' },
-      ]
-    },
-    {
-      label: '广告投放',
-      icon: 'fa-solid fa-bullhorn',
-      items: [
-        { label: '广告报销发票兑现', link: '/门店管理/广告投放/广告报销发票兑现/', icon: 'fa-solid fa-receipt' },
-        { label: '广告费报销', link: '/门店管理/广告投放/广告费报销/', icon: 'fa-solid fa-file-invoice-dollar' },
-        { label: '广告投放申请', link: '/门店管理/广告投放/广告投放申请/', icon: 'fa-solid fa-pen-to-square' },
-      ]
-    },
-    {
-      label: '装修报表',
-      icon: 'fa-solid fa-chart-pie',
-      items: [
-        { label: '门额度内兑现统计报表', link: '/门店管理/装修报表/门额度内兑现统计报表/', icon: 'fa-solid fa-chart-line' },
-        { label: '兑现汇总', link: '/门店管理/装修报表/兑现汇总/', icon: 'fa-solid fa-layer-group' },
-        { label: '门店验收与报销单报表', link: '/门店管理/装修报表/门店验收与报销单报表/', icon: 'fa-solid fa-file-lines' },
-        { label: '门店装修额度外报表', link: '/门店管理/装修报表/门店装修额度外报表/', icon: 'fa-solid fa-sack-dollar' },
-        { label: '门店装修申请与进度更新报表', link: '/门店管理/装修报表/门店装修申请与进度更新报表/', icon: 'fa-solid fa-pen-to-square' },
-      ]
-    }
-  ],
-  '经销合同管理': [
-    {
-      label: '销售合同',
-      icon: 'fa-solid fa-file-signature',
-      items: [
-        { label: '认缴申请', link: '/经销合同管理/销售合同/认缴申请/', icon: 'fa-solid fa-pen-to-square' },
-        { label: '保证金减免申请', link: '/经销合同管理/销售合同/保证金减免申请/', icon: 'fa-solid fa-hand-holding-dollar' },
-        { label: '合同保证金', link: '/经销合同管理/销售合同/合同保证金/', icon: 'fa-solid fa-lock' },
-        { label: '经销合同变更', link: '/经销合同管理/销售合同/经销合同变更/', icon: 'fa-solid fa-rotate' },
-        { label: '年度经销合同', link: '/经销合同管理/销售合同/年度经销合同/', icon: 'fa-solid fa-file-contract' },
-        { label: '认缴概况', link: '/经销合同管理/销售合同/认缴概况/', icon: 'fa-solid fa-chart-pie' },
-      ]
-    },
-    {
-      label: '合同管理',
-      icon: 'fa-solid fa-folder-tree',
-      items: [
-        { label: '合同任务完成率', link: '/经销合同管理/合同管理/合同任务完成率/', icon: 'fa-solid fa-check-double' },
-        { label: '合同任务完成率明细报表', link: '/经销合同管理/合同管理/合同任务完成率明细报表/', icon: 'fa-solid fa-table-list' },
-        { label: '经销合同归档', link: '/经销合同管理/合同管理/经销合同归档/', icon: 'fa-solid fa-box-archive' },
-        { label: '年度营销政策', link: '/经销合同管理/合同管理/年度营销政策/', icon: 'fa-solid fa-ruler-combined' },
-      ]
-    },
-    {
-      label: '报表中心',
-      icon: 'fa-solid fa-chart-bar',
-      items: [
-        { label: '经销合同销售区域报表', link: '/经销合同管理/报表中心/经销合同销售区域报表/', icon: 'fa-solid fa-map-location-dot' },
-      ]
-    }
-  ],
-  '点将管理': [
-    {
-      label: '特训营管理',
-      icon: 'fa-solid fa-campground',
-      items: [
-        { label: '特训营管理', link: '/点将管理/特训营管理/特训营管理/', icon: 'fa-solid fa-campground' },
-        { label: '特训营点将管理', link: '/点将管理/特训营管理/特训营点将管理/', icon: 'fa-solid fa-pen-to-square' },
-        { label: '特训营点将执行', link: '/点将管理/特训营管理/特训营点将执行/', icon: 'fa-solid fa-play' },
-        { label: '活动点将执行', link: '/点将管理/特训营管理/活动点将执行/', icon: 'fa-solid fa-person-running' },
-      ]
-    },
-    {
-      label: '策划师点将',
-      icon: 'fa-solid fa-user-tie',
-      items: [
-        { label: '活动点将管理', link: '/点将管理/策划师点将/活动点将管理/', icon: 'fa-solid fa-list-check' },
-      ]
-    },
-    {
-      label: '单店培训点将管理',
-      icon: 'fa-solid fa-chalkboard-user',
-      items: [
-        { label: '单店点将管理', link: '/点将管理/单店培训点将管理/单店点将管理/', icon: 'fa-solid fa-pen-to-square' },
-        { label: '单店点将执行', link: '/点将管理/单店培训点将管理/单店点将执行/', icon: 'fa-solid fa-play' },
-      ]
-    },
-    {
-      label: '基础管理',
-      icon: 'fa-solid fa-gear',
-      items: [
-        { label: '讲师档案', link: '/点将管理/基础管理/讲师档案/', icon: 'fa-solid fa-id-card' },
-        { label: '档案审批', link: '/点将管理/基础管理/档案审批/', icon: 'fa-solid fa-check-circle' },
-        { label: '讲师排期', link: '/点将管理/基础管理/讲师排期/', icon: 'fa-solid fa-calendar-days' },
-      ]
-    },
-    {
-      label: '经销商点将',
-      icon: 'fa-solid fa-shop',
-      items: [
-        { label: '单店点将', link: '/点将管理/经销商点将/单店点将/', icon: 'fa-solid fa-store' },
-        { label: '活动点将', link: '/点将管理/经销商点将/活动点将/', icon: 'fa-solid fa-party-horn' },
-        { label: '设计点将', link: '/点将管理/经销商点将/设计点将/', icon: 'fa-solid fa-palette' },
-        { label: '特训营', link: '/点将管理/经销商点将/特训营/', icon: 'fa-solid fa-campground' },
-      ]
-    },
-    {
-      label: '设计师点将',
-      icon: 'fa-solid fa-paint-brush',
-      items: [
-        { label: '设计师饱和度', link: '/点将管理/设计师点将/设计师饱和度/', icon: 'fa-solid fa-chart-simple' },
-        { label: '设计师点将管理', link: '/点将管理/设计师点将/设计师点将管理/', icon: 'fa-solid fa-pen-to-square' },
-        { label: '设计师点将执行', link: '/点将管理/设计师点将/设计师点将执行/', icon: 'fa-solid fa-play' },
-      ]
-    }
-  ],
-  '产品中心': [
-    {
-      label: '产品资料',
-      icon: 'fa-solid fa-folder-open',
-      items: [
-        { label: '产品列表', link: '/产品中心/产品资料/产品列表/', icon: 'fa-solid fa-list' },
-        { label: '产品分类', link: '/产品中心/产品资料/产品分类/', icon: 'fa-solid fa-sitemap' },
-        { label: '产品变更列表', link: '/产品中心/产品资料/产品变更列表/', icon: 'fa-solid fa-rotate' },
-        { label: '产品SM状态变更申请', link: '/产品中心/产品资料/产品SM状态变更申请/', icon: 'fa-solid fa-pen-to-square' },
-        { label: '产品图册', link: '/产品中心/产品资料/产品图册/', icon: 'fa-solid fa-images' },
-        { label: '产品图片上传', link: '/产品中心/产品资料/产品图片上传/', icon: 'fa-solid fa-upload' },
-        { label: '产品推广等级维护', link: '/产品中心/产品资料/产品推广等级维护/', icon: 'fa-solid fa-star' },
-        { label: '产品推广等级要求配置', link: '/产品中心/产品资料/产品推广等级要求配置/', icon: 'fa-solid fa-sliders' },
-      ]
-    },
-    {
-      label: '价目表',
-      icon: 'fa-solid fa-tags',
-      items: [
-        { label: '价目表查询', link: '/产品中心/价目表/价目表查询/', icon: 'fa-solid fa-search-dollar' },
-        { label: '跨事业部产品产品销售申请', link: '/产品中心/价目表/跨事业部产品产品销售申请/', icon: 'fa-solid fa-shuffle' },
-        { label: '跨事业部产品销售清单', link: '/产品中心/价目表/跨事业部产品销售清单/', icon: 'fa-solid fa-table-list' },
-        { label: '责任制内结价定价瓷砖参数配置', link: '/产品中心/价目表/责任制内结价定价瓷砖参数配置/', icon: 'fa-solid fa-cubes' },
-        { label: '责任制内结价定价基础参数配置', link: '/产品中心/价目表/责任制内结价定价基础参数配置/', icon: 'fa-solid fa-wrench' },
-      ]
-    },
-    {
-      label: '库存',
-      icon: 'fa-solid fa-warehouse',
-      items: [
-        { label: '库存查询', link: '/产品中心/库存/库存查询/', icon: 'fa-solid fa-magnifying-glass' },
-        { label: '事业部库存查询', link: '/产品中心/库存/事业部库存查询/', icon: 'fa-solid fa-building' },
-      ]
-    },
-    {
-      label: '说明书',
-      icon: 'fa-solid fa-book-open',
-      items: [
-        { label: '产品说明书', link: '/产品中心/说明书/产品说明书/', icon: 'fa-solid fa-book' },
-        { label: '说明书查阅数据', link: '/产品中心/说明书/说明书查阅数据/', icon: 'fa-solid fa-chart-line' },
-      ]
-    }
-  ],
-  '电子合同管理': [
-    {
-      label: '基础管理',
-      icon: 'fa-solid fa-gear',
-      items: [
-        { label: '合同模板管理', link: '/电子合同管理/基础管理/合同模板管理/', icon: 'fa-solid fa-file-code' },
-      ]
-    },
-    {
-      label: '经销商',
-      icon: 'fa-solid fa-shop',
-      items: [
-        { label: '合同管理', link: '/电子合同管理/经销商/合同管理/', icon: 'fa-solid fa-file-contract' },
-      ]
-    },
-    {
-      label: '品牌方',
-      icon: 'fa-solid fa-tag',
-      items: [
-        { label: '合同签署异常处理', link: '/电子合同管理/品牌方/合同签署异常处理/', icon: 'fa-solid fa-triangle-exclamation' },
-      ]
-    }
-  ],
-  '问题反馈': [
-    {
-      label: '问题反馈',
-      icon: 'fa-solid fa-comment-dots',
-      items: [
-        { label: '问题反馈', link: '/问题反馈/问题反馈/', icon: 'fa-solid fa-pen-to-square' },
-        { label: '问题回复', link: '/问题反馈/问题回复/', icon: 'fa-solid fa-reply' },
-      ]
-    }
-  ],
-  '开发管理': [
-    {
-      label: '值集配置',
-      icon: 'fa-solid fa-table-list',
-      items: [
-        { label: '装修等级', link: '/开发管理/值集配置/装修等级/', icon: 'fa-solid fa-paint-roller' },
-      ]
-    }
-  ],
-  '财务管理': [
-    {
-      label: '预提与冲销',
-      icon: 'fa-solid fa-receipt',
-      items: [
-        { label: '工程服务费冲销', link: '/财务管理/预提与冲销/工程服务费冲销/', icon: 'fa-solid fa-scissors' },
-        { label: '额度内冲销报表', link: '/财务管理/预提与冲销/额度内冲销报表/', icon: 'fa-solid fa-table' },
-        { label: '额度内预提报表', link: '/财务管理/预提与冲销/额度内预提报表/', icon: 'fa-solid fa-chart-bar' },
-      ]
-    },
-    {
-      label: '调整单',
-      icon: 'fa-solid fa-sliders',
-      items: [
-        { label: '广告费调整申请单', link: '/财务管理/调整单/广告费调整申请单/', icon: 'fa-solid fa-bullhorn' },
-        { label: '政策性补贴申请', link: '/财务管理/调整单/政策性补贴申请/', icon: 'fa-solid fa-award' },
-        { label: '销售提价兑现', link: '/财务管理/调整单/销售提价兑现/', icon: 'fa-solid fa-check-circle' },
-      ]
-    },
-    {
-      label: '对账单',
+      label: '订单',
       icon: 'fa-solid fa-file-invoice',
       items: [
-        { label: '经销商余额明细查询', link: '/财务管理/对账单/经销商余额明细查询/', icon: 'fa-solid fa-wallet' },
-        { label: '客户金税发票号码查询', link: '/财务管理/对账单/客户金税发票号码查询/', icon: 'fa-solid fa-receipt' },
-        { label: '待兑现折扣折让对账单', link: '/财务管理/对账单/待兑现折扣折让对账单/', icon: 'fa-solid fa-file-contract' },
-        { label: '额度内市场推广服务费对账单', link: '/财务管理/对账单/额度内市场推广服务费对账单/', icon: 'fa-solid fa-file-invoice-dollar' },
-        { label: '额度外预算总额', link: '/财务管理/对账单/额度外预算总额/', icon: 'fa-solid fa-coins' },
-        { label: '法人对账单', link: '/财务管理/对账单/法人对账单/', icon: 'fa-solid fa-building' },
-        { label: '广告费余额查询', link: '/财务管理/对账单/广告费余额查询/', icon: 'fa-solid fa-ad' },
-        { label: '政策性补贴申请', link: '/财务管理/对账单/政策性补贴申请/', icon: 'fa-solid fa-award' },
+        { label: '创建常规订单', link: '/订单/创建常规订单/', icon: 'fa-solid fa-file-circle-plus' },
       ]
     }
   ]
-}
-
-const currentPath = computed(() => {
+} = computed(() => {
   // 确保路径以 / 开头，用于匹配
   const path = router.route.path
   return path.endsWith('/') ? path : path + '/'
@@ -655,55 +269,23 @@ function navigateTo(link) {
 }
 
 function resolvePanel(path) {
-  if (path.includes('/家装管理/')) return '家装管理'
-  if (path.includes('/工程管理/')) return '工程管理'
-  if (path.includes('/门店管理/')) return '门店管理'
-  if (path.includes('/财务管理/')) return '财务管理'
-  if (path.includes('/经销合同管理/')) return '经销合同管理'
-  if (path.includes('/点将管理/')) return '点将管理'
-  if (path.includes('/产品中心/')) return '产品中心'
-  if (path.includes('/电子合同管理/')) return '电子合同管理'
-  if (path.includes('/问题反馈/')) return '问题反馈'
-  if (path.includes('/开发管理/')) return '开发管理'
+  if (path.includes('/订单管理/')) return '订单管理'
   return null
 }
 
 function resolveGroup(path) {
-  if (path.includes('/家装管理/家装往来/')) return '家装往来'
-  if (path.includes('/家装管理/项目交付/')) return '项目交付'
-  if (path.includes('/家装管理/')) return '项目往来'
-  if (path.includes('/工程管理/服务费/')) return '服务费'
-  if (path.includes('/工程管理/项目交付/')) return '项目交付'
-  if (path.includes('/工程管理/项目合同/')) return '项目合同'
-  if (path.includes('/工程管理/合同与折扣/')) return '合同与折扣'
-  if (path.includes('/工程管理/项目往来/')) return '项目往来'
-  if (path.includes('/工程管理/项目商机/')) return '项目商机'
-  if (path.includes('/门店管理/门店设置/')) return '门店设置'
-  if (path.includes('/门店管理/门店档案/')) return '门店档案'
-  if (path.includes('/门店管理/门店装修/')) return '门店装修'
-  if (path.includes('/门店管理/门店报表/')) return '门店报表'
-  if (path.includes('/门店管理/广告投放/')) return '广告投放'
-  if (path.includes('/门店管理/装修报表/')) return '装修报表'
-  if (path.includes('/门店管理/')) return '样品及长库龄管理'
-  if (path.includes('/财务管理/调整单/')) return '调整单'
-  if (path.includes('/财务管理/对账单/')) return '对账单'
-  if (path.includes('/财务管理/')) return '预提与冲销'
-  if (path.includes('/电子合同管理/品牌方/')) return '品牌方'
-  if (path.includes('/电子合同管理/经销商/')) return '经销商'
-  if (path.includes('/电子合同管理/')) return '基础管理'
-  if (path.includes('/问题反馈/')) return '问题反馈'
-  if (path.includes('/开发管理/')) return '值集配置'
+  if (path.includes('/订单管理/订单/')) return '订单'
   return null
 }
 
 const expandedPanel = ref(null)
-const expandedGroup = ref('项目往来')
+const expandedGroup = ref('订单')
 
 onMounted(() => {
   const p = currentPath.value
-  // 根路径自动跳转到家装真实性核销（使用 withBase 确保 base 路径正确）
+  // 根路径自动跳转到第一个 CRM 页面
   if (p === '/' || p === '/index.html' || p === '/system-knowledge-base/' || p === '/system-knowledge-base/index.html') {
-    router.go(withBase('/家装管理/项目往来/家装真实性核销/'))
+    router.go(withBase('/订单/创建常规订单/'))
     return
   }
   // 根据当前路径展开侧边栏

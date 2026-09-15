@@ -42,7 +42,7 @@ export default {
 
       router.onAfterRouteChanged = (to) => {
         if (to.path === '/' || to.path === '') {
-          window.location.replace('/家装管理/项目往来/家装真实性核销/')
+          window.location.replace('/订单/创建常规订单/')
         }
       }
 

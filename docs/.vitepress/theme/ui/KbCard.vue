@@ -17,9 +17,13 @@
 
 <script setup>
 defineProps({
+  // 紫色编号圆（如步骤序号）
   num: { type: [String, Number], default: null },
+  // 卡片标题
   title: { type: String, default: '' },
+  // 浅紫渐变变体（用于强调卡片）
   alt: { type: Boolean, default: false },
+  // 是否启用 hover 抬升效果
   hover: { type: Boolean, default: true },
 })
 </script>
@@ -28,7 +32,7 @@ defineProps({
 .kb-card {
   width: 100%;
   max-width: 100%;
-  padding: 24px;
+  padding: 24px 10%;
   border: none;
   border-radius: 12px;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);

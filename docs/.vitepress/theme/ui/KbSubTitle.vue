@@ -3,6 +3,7 @@
 </template>
 
 <script setup>
+// 紫色左边线小标题（模块内子标题）
 defineProps({ title: { type: String, default: '' } })
 </script>
 

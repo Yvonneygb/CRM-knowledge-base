@@ -3,8 +3,13 @@
 </template>
 
 <script setup>
+// 状态徽章 / 标签：紫色为主，支持 red/orange/green/yellow 语义色
 defineProps({
-  type: { type: String, default: 'purple', validator: (v) => ['purple', 'red', 'orange', 'green', 'yellow'].includes(v) },
+  type: {
+    type: String,
+    default: 'purple',
+    validator: (v) => ['purple', 'red', 'orange', 'green', 'yellow'].includes(v),
+  },
   text: { type: String, default: '' },
 })
 </script>

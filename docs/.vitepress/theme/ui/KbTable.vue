@@ -20,9 +20,10 @@
 </template>
 
 <script setup>
+// 数据表格：基于 columns / rows 渲染；也可通过默认 slot 自定义行列
 defineProps({
-  columns: { type: Array, default: () => [] },
-  rows: { type: Array, default: () => [] },
+  columns: { type: Array, default: () => [] }, // [{ key, label, width? }]
+  rows: { type: Array, default: () => [] }, // [{ key: value }]
   striped: { type: Boolean, default: true },
 })
 </script>

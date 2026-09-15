@@ -129,10 +129,10 @@
 
 <div id="biz-flow" style="display:none;">
 <div class="tab-pad">
-  <div class="bf-truth-flow">
+  <div class="bf-truth-flow" v-pre>
     <div class="bf-main-title">创建常规订单业务流程</div>
     <div class="bf-main-sub">经销商登录 → 选择经销商 → 选渠道/产品线/业务类型 → 选开票单位 → 新建订单行 → 保存 → 提交 → OA审批 → 同步EBS → 发货出库</div>
-    <div class="bf-fc-svg-wrap" v-pre>
+    <div class="bf-fc-svg-wrap">
       <svg class="bf-fc-svg" style="max-height:none;" viewBox="0 0 1200 700" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <marker id="arr-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">

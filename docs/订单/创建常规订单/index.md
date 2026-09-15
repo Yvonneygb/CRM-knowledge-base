@@ -140,6 +140,47 @@
       <span class="bf-fc-legend-item"><span style="display:inline-block;width:22px;height:2px;background:#EF4444;"></span> 审批拒绝/驳回</span>
     </div>
   </div>
+
+<div class="kl-card">
+<div class="biz-kl-hdr">
+<span class="biz-tag">上游依赖</span>
+<h2>本菜单依赖的上游模块</h2>
+</div>
+<table class="kl-table striped">
+<thead><tr><th>上游模块</th><th>依赖类型</th><th>依赖说明</th><th>依赖成立条件</th></tr></thead>
+<tbody>
+<tr><td>经销商主数据（LNK_ACCNT）</td><td>数据依赖</td><td>选择经销商，带出渠道可选范围、产品线、交易公司、签约方式、币种、扣款方式、事业部(deptId)、计合同折扣/计广告费属性</td><td>经销商资料有效，客户分类1/2、所属事业部已维护</td></tr>
+<tr><td>开票单位（LNK_BILL_ACCOUNT）</td><td>数据依赖</td><td>订单开票单位选择，带出法人客户信息、同控人信息</td><td>开票单位状态=Agree(已审核)，且属于所选经销商+交易公司范围</td></tr>
+<tr><td>交易公司（LNK_ORG_COMPANY）</td><td>数据依赖</td><td>按经销商事业部+签约方式自动带出可选交易公司</td><td>签约方式有效，交易公司类型匹配</td></tr>
+<tr><td>价目表（LNK_PRICE_LIST_ITEM）</td><td>数据依赖</td><td>订单行产品标准单价、整箱包装数、产品渠道、产品线来源</td><td>事业部价目表生效且含该产品</td></tr>
+<tr><td>促销政策（LNK_DCT_POLICY_HEAD）</td><td>数据依赖</td><td>折扣政策选择，锁定折扣比例、封顶量、适用产品</td><td>政策生效、币种/渠道/业务类型/经销商区域匹配</td></tr>
+<tr><td>产品资料（LNK_PROD）</td><td>数据依赖</td><td>产品编号、名称、型号、规格、颜色、体积、重量、单位、产品渠道、产品线、生命状态</td><td>产品有效，产品渠道包含订单渠道</td></tr>
+<tr><td>工程合同（LNK_PROJECT_CONTRACT）</td><td>数据依赖</td><td>工程/家装渠道可选合同载体，带出工程项目名称、合同有效期、项目所在地、是否战略</td><td>合同状态=APPROVED(已批准)</td></tr>
+<tr><td>收货地址（LNK_ACCT_ADDR）</td><td>数据依赖</td><td>收件人、收件电话、收货地址选择</td><td>地址类型=C(收货地址)、isEffective=Y</td></tr>
+<tr><td>审批设置（LNK_APPROVAL_CFG）</td><td>配置依赖</td><td>保存时校验存在匹配的审批设置(订单类型+渠道+产品线+业务类型)、扣定金管控</td><td>审批设置已维护，四要素匹配</td></tr>
+<tr><td>单据编码配置（LNK_ENCODING_CFG）</td><td>配置依赖</td><td>订单编号前缀(单据编码)来源</td><td>按事业部+订单类型已维护单据编号</td></tr>
+<tr><td>客户账户/余额（LNK_BILL_ACCOUNT 信用管控）</td><td>数据依赖</td><td>信用管控经销商提交时校验账户余额</td><td>开票单位信用管控=Y</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="kl-card">
+<div class="biz-kl-hdr">
+<span class="biz-tag">下游影响</span>
+<h2>本菜单产生的下游影响</h2>
+</div>
+<table class="kl-table striped">
+<thead><tr><th>下游模块</th><th>影响类型</th><th>影响说明</th></tr></thead>
+<tbody>
+<tr><td>OA审批流程</td><td>流程触发</td><td>提交后通过审批配置 OrderLHApprovalCFG 发起 OA 流程，状态变为 Submitted，OA 审核状态 lHreviweStatus 推进（PushFail 时可重推 OA）</td></tr>
+<tr><td>EBS订单同步</td><td>数据推送</td><td>审批通过后的常规订单通过 synOrderToEbs 推送到 EBS，生成 EBS 订单头/订单行；EBS 退回则状态 EbsReturn，EBS 发货同步为 EbsSynchronization</td></tr>
+<tr><td>出库/发货</td><td>流转触发</td><td>审核通过后抛转生产、出库，订单行记录已发数量 lHbilleQty、未发货数量 lHunbilleQty、未发货金额，发货后状态流转至部分发货/已完成</td></tr>
+<tr><td>折扣政策占用</td><td>额度占用</td><td>有促销政策订单提交时占用政策产品封顶量(checkPolicyOrder / applyNum)，审核拒绝时回滚</td></tr>
+<tr><td>定金预占/扣减</td><td>额度占用</td><td>扣定金经销商订单提交时按审批设置/定金比例预占定金，扣定金审核(deductSubscribtionApproval)通过后才实际扣减</td></tr>
+<tr><td>余额账户</td><td>额度校验</td><td>订单金额影响出库余额(obbalance)与客户账户余额校验</td></tr>
+</tbody>
+</table>
+</div>
 </div>
 </div>
 

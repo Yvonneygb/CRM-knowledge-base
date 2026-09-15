@@ -127,9 +127,9 @@
 </div>
 </div>
 
-<div id="biz-flow" style="display:none;">
+<div id="biz-flow" style="display:none;" v-pre>
 <div class="tab-pad">
-  <div class="bf-truth-flow" v-pre>
+  <div class="bf-truth-flow">
     <div class="bf-main-title">创建常规订单业务流程</div>
     <div class="bf-main-sub">经销商登录 → 选择经销商 → 选渠道/产品线/业务类型 → 选开票单位 → 新建订单行 → 保存 → 提交 → OA审批 → 同步EBS → 发货出库</div>
     <div class="bf-fc-svg-wrap">
